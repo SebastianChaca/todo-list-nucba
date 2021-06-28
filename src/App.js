@@ -1,42 +1,42 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
-  ChakraProvider,
+  ChakraProvider, 
   Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
   theme,
+  Flex,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Logo } from './Logo';
+import Card from './components/card/card';
 
-function App() {
-  return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
-    </ChakraProvider>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      color: 'red'
+    }}
+  setColor(color){
+    this.setState({
+      color
+    })
+  }
+  render(){
+
+    return (
+      <ChakraProvider theme={theme}>
+      <Flex>
+        <Card titulo='titulo1' description='sasasasas' color={this.state.color}/>
+        <Card titulo='titulo2' description='sasasas2asdasdasas'  color={this.state.color}/>        
+      </Flex>
+      <Flex>
+        <Box bg='blue' borderRadius='100%'  w='50px' h='50px' m='20px' onClick={()=>this.setColor('blue')}/>
+        <Box bg='red' borderRadius='100%'  w='50px' h='50px' m='20px' onClick={()=>this.setColor('red')}/>
+        <Box bg='black' borderRadius='100%'  w='50px' h='50px' m='20px' onClick={()=>this.setColor('black')}/>
+
+      </Flex>
+      </ChakraProvider>
+    );
+  }
 }
 
 export default App;
